@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Strength Meter</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="crt-overlay"></div>
+
+    <main class="terminal-shell">
+        <header class="shell-header">
+            <span class="dot red"></span>
+            <span class="dot amber"></span>
+            <span class="dot green"></span>
+            <span class="shell-title">sec-scan // password_auditor.exe</span>
+        </header>
+
+        <div class="shell-body">
+
+            <!-- Left panel: input + meter -->
+            <section class="panel input-panel">
+                <p class="eyebrow">Password Checker</p>
+                <h1>How strong is your password?</h1>
+
+                <div class="input-row">
+                    <span class="prompt-symbol">&gt;</span>
+                    <input type="text" id="passwordInput" placeholder="Type a password to scan..." autocomplete="off"
+                        spellcheck="false">
+                    <button id="toggleVisibility" type="button" aria-label="Toggle password visibility">SHOW</button>
+                </div>
+
+                <div class="meter-track">
+                    <div id="meterFill" class="meter-fill"></div>
+                </div>
+                <<p id="strengthLabel" class="strength-label">
+                    <span id="strengthPercentage">0%</span> — <span id="strengthText">Awaiting input</span>
+                  </p>
+
+            </section>
+
+            <!-- Right panel: live diagnostic log -->
+            <section class="panel log-panel">
+                <p class="eyebrow">Live check</p>
+                <ul id="checkList" class="check-list">
+                    <li data-check="length"><span class="check-icon">—</span> Minimum 8 characters</li>
+                    <li data-check="upper"><span class="check-icon">—</span> Contains uppercase letter</li>
+                    <li data-check="lower"><span class="check-icon">—</span> Contains lowercase letter</li>
+                    <li data-check="digit"><span class="check-icon">—</span> Contains a digit</li>
+                    <li data-check="special"><span class="check-icon">—</span> Contains special character</li>
+                    <li data-check="not_common"><span class="check-icon">—</span> Not a common password</li>
+                </ul>
+                <p class="log-footer"><span class="blink-cursor">_</span></p>
+            </section>
+
+        </div>
+    </main>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+
+</html>
